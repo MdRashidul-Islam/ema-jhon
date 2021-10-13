@@ -1,6 +1,7 @@
 import React from 'react';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
+import { removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import OrderedItem from '../OrderedItem/OrderedItem';
 
@@ -11,6 +12,7 @@ const Review = () => {
 const handleRemove=(key)=>{
 const newCart = cart.filter(product => product.key !== key);
 setCart(newCart);
+removeFromDb(key);
 
 }
 

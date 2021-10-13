@@ -7,20 +7,31 @@ import { addToDb, getStoredCart } from '../../utilities/fakedb';
 const Shop = () => {
 const [products, setProducts]= useState([])
 const [cart, setCart]=useState([])
+const [searchProduct, setSearchProduct]=useState([])
 
  useEffect(()=>{
         fetch('./products.json')
         .then(res=>res.json())
-        .then(data=>setProducts(data))
+        .then(data=>{
+          setProducts(data);
+          setSearchProduct(data);
+        })
         },[])
 
 useEffect(()=>{
  if(products.length){
   const savedCart= getStoredCart();
+  const storedCart=[];
   for(const key in savedCart){
     const addedProduct=products.find(product=> product.key===key);
-    console.log(addedProduct);
+    if(addedProduct){
+      const quantity= savedCart[key];
+      addedProduct.quantity=quantity
+      storedCart.push(addedProduct);
+    }
+    
   }
+  setCart(storedCart)
  }
 },[products])
 
@@ -32,11 +43,18 @@ const handleAddToCart=(product)=>{
   console.log(newCart);
 }
 
+const handleSearch=event=>{
+const searchText= event.target.value;
+const matchedProducts= products.filter(product=> product.name.toLowerCase().includes(searchText.toLowerCase()));
+setSearchProduct(matchedProducts)
+}
+
 return (
 <div className="shop-container">
  <div className="product-container">
+   <input onChange={handleSearch} type="text" />
    {
-      products.map(product=><Product
+      searchProduct.map(product=><Product
          product={product}
          key={product.key}
          handleAddToCart={ handleAddToCart}

@@ -18,6 +18,7 @@ for (const product of cart){
                     <h3>Order Review</h3>
                     <h3>order items: {totalQuantity}</h3>
                     <h3>total:{total}</h3>
+                    <h3>{props.children}</h3>
                 </div>
         );
 };

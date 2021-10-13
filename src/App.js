@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Review from "./components/Review/Review";
 import Inventory from "./components/Inventory/Inventory";
+import PlaceOrder from "./components/PlaceOrder/PlaceOrder";
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/inventory">
             <Inventory></Inventory>
+          </Route>
+          <Route path="/placeOrder">
+          <PlaceOrder></PlaceOrder>
           </Route>
           <Route exact path="*">
             <h1>404</h1>

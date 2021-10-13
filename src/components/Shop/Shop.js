@@ -3,6 +3,7 @@ import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
 import './Shop.css'
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
 const [products, setProducts]= useState([])
@@ -37,7 +38,18 @@ useEffect(()=>{
 
 
 const handleAddToCart=(product)=>{
-  const newCart = [...cart, product]
+  const exists = cart.find(prod=>prod.key===product.key);
+  let newCart=[];
+  if(exists){
+const rest= cart.filter(prod=>prod.key !== product.key);
+exists.quantity= exists.quantity + 1;
+newCart=[...rest, product];
+  }
+  else{
+    product.quantity=1;
+    newCart=[...cart, product];
+  }
+  // const newCart = [...cart, product]
   setCart(newCart);
   addToDb(product.key)
   console.log(newCart);
@@ -64,7 +76,11 @@ return (
 
 
 <div>
-<Cart cart={cart}></Cart>
+<Cart cart={cart}>
+  <Link to="/review">
+    <button> Review your order</button>
+  </Link>
+</Cart>
 </div>  
  </div>
 );

@@ -6,12 +6,24 @@ import OrderedItem from '../OrderedItem/OrderedItem';
 
 const Review = () => {
         const [products]= useProducts()
-        const [cart]=useCart(products)
+        const [cart, setCart]=useCart(products);
+
+const handleRemove=(key)=>{
+const newCart = cart.filter(product => product.key !== key);
+setCart(newCart);
+
+}
+
+
         return (
                 <div className="shop-container">
                  <div className="product-container">
                 {
-                    cart.map(product=><OrderedItem product={product}></OrderedItem>)    
+                    cart.map(product=><OrderedItem 
+                        key={product.key} 
+                        product={product}
+                        handleRemove={handleRemove}
+                        ></OrderedItem>)    
                 }
                  </div>
                 <div>

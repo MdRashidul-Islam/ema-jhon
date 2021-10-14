@@ -6,22 +6,23 @@ import Rating from 'react-rating';
 
 const Product = (props) => {
         const {img, name, price, star}=props.product
+ 
         const { handleAddToCart}=props
 
         return (
                 <div className="product">
                     <img src={img} alt="" />
-                    <h4>{name}</h4>
+                    <h4 className='text-primary'>{name}</h4>
                     <h4>Price: {price}</h4> 
-                    <Rating
+                    <h5>Ratings: <Rating
                      emptySymbol="far fa-star"
                      fullSymbol="fas fa-star "
                      initialRating={star}
                      readonly
                     
-                    /> 
+                    /> </h5>
                     <br />
-                    <button onClick={()=> handleAddToCart(props.product)} ><FontAwesomeIcon icon={faShoppingCart} /> add to cart</button>  
+                    <button className="button" onClick={()=> handleAddToCart(props.product)} ><FontAwesomeIcon icon={faShoppingCart} /> add to cart</button>  
                 </div>
                
         );

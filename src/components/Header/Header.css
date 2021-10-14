@@ -1,5 +1,26 @@
-.logo{
-        width: 300px;
-        display: block;
-        margin: 0 auto;
+.header{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        margin: 10px;
 }
+.logo{
+        width: 120px;
+        height: 50px;
+
+
+}
+
+.nav{
+        text-align: center;background-color: black;
+        height: 46px;
+        
+}
+
+.nav a{
+        text-decoration: none;
+        align-items: center;
+        font-size: 26px;
+        padding: 20px;
+        color: white;
+}
+

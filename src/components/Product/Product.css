@@ -1,5 +1,27 @@
 .product{
-        padding: 20px;
+        padding: 20px 20px 20px 60px;
         border-bottom: 1px solid gray;
         border-right: 1px solid gray;
+}
+.product:hover{
+
+}
+.button{
+        background: white;
+        border: 2px solid #FF9C08;
+        border-radius: 5px;
+        padding: 10px 26px;
+        font-weight: bold;
+        margin-top: 10px;
+}
+
+.button:hover{
+        border: 2px solid #FF9C08;
+        background: #FF9C08;  
+        color:white;   
+}
+
+.fa-star{
+        
+        color:#FF9C08;
 }
